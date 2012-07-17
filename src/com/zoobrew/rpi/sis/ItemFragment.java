@@ -24,7 +24,7 @@ public class ItemFragment extends Fragment{
         }
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.main, container, false);
+        return inflater.inflate(R.layout.item, container, false);
     }
 
     @Override
@@ -38,14 +38,14 @@ public class ItemFragment extends Fragment{
         Bundle args = getArguments();
         if (args != null) {
             // Set article based on argument passed in
-            updateArticleView(args.getInt(ARG_POSITION));
+            updateItemView(args.getInt(ARG_POSITION));
         } else if (mCurrentPosition != -1) {
             // Set article based on saved instance state defined during onCreateView
-            updateArticleView(mCurrentPosition);
+            updateItemView(mCurrentPosition);
         }
     }
 
-    public void updateArticleView(int position) {
+    public void updateItemView(int position) {
         TextView item = (TextView) getActivity().findViewById(R.id.item);
         item.setText(Titles.Items[position]);
         mCurrentPosition = position;

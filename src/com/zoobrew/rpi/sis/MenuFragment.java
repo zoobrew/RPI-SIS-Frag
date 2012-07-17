@@ -10,11 +10,13 @@ import android.widget.ListView;
 
 public class MenuFragment extends ListFragment {
     OnMenuSelectedListener mCallback;
+    
+    int mCurrentPosition = -1;
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnMenuSelectedListener {
         /** Called by MenuFragment when a list item is selected */
-        public void onItemSelected(int position);
+        public void onMenuSelected(int position);
     }
 
     @Override
@@ -50,16 +52,22 @@ public class MenuFragment extends ListFragment {
             mCallback = (OnMenuSelectedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+                    + " must implement OnMenuSelectedListener");
         }
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Notify the parent activity of selected item
-        mCallback.onItemSelected(position);
+        mCallback.onMenuSelected(position);
         
         // Set the item as checked to be highlighted when in two-pane layout
         getListView().setItemChecked(position, true);
+    }
+    
+    public void updateMenuView(int position) {
+        //ListView menu = (ListView) getActivity().findViewById(R.id.fragment_container);
+        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.main, Titles.SubMenu[position]));
+        mCurrentPosition = position;
     }
 }
