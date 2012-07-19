@@ -47,7 +47,7 @@ public class SubMenuFragment extends ListFragment {
 
 	        // When in two-pane layout, set the listview to highlight the selected list item
 	        // (We do this during onStart because at the point the listview is available.)
-	        if (getFragmentManager().findFragmentById(R.id.item_fragment) != null) {
+	        if (getFragmentManager().findFragmentById(R.id.item) != null) {
 	            getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	        }
 	        
@@ -67,6 +67,7 @@ public class SubMenuFragment extends ListFragment {
 	    
 	    public void updateSubMenuView(int position) {
 	        //ListView submenu = (ListView) getActivity().findViewById(R.id.submenu);
+	    	
 	        setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.item, Titles.SubMenu[position]));
 	        smCurrentPosition = position;
 	     

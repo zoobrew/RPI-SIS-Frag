@@ -3,6 +3,7 @@ package com.zoobrew.rpi.sis;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Menu;
 
 public class MainActivity extends FragmentActivity
 	implements MenuFragment.OnMenuSelectedListener ,SubMenuFragment.OnSubMenuSelectedListener
@@ -40,12 +41,16 @@ public class MainActivity extends FragmentActivity
                 .add(R.id.fragment_container, firstFragment).commit();
     }
 }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    
 
 public void onSubMenuSelected(int position) {
     // The user selected the SubMenu Item from the SubMenu
-	
-}
-	
 	/*
 
     // Capture the Item fragment from the activity layout
@@ -76,14 +81,15 @@ public void onSubMenuSelected(int position) {
         // Commit the transaction
         transaction.commit();
     }
+    */
 }
-*/
+
     public void onMenuSelected(int position) {
         // The user selected the SubMenu from the MenuFragment
 
         // Capture the SubMenu fragment from the activity layout
         SubMenuFragment submenuFrag = (SubMenuFragment)
-              getSupportFragmentManager().findFragmentById(R.id.submenu_fragment);
+              getSupportFragmentManager().findFragmentById(R.id.item_fragment);
 
         if (submenuFrag != null) {
             // If submenu fragment is available, we're in two-pane layout...
@@ -111,39 +117,5 @@ public void onSubMenuSelected(int position) {
             transaction.commit();
         }
     }
-/*    
-public void onMenuSelected(int position) {
-    // The user selected the Item from the MenuFragment
-
-    // Capture the Item fragment from the activity layout
-    ItemFragment itemFrag = (ItemFragment)
-          getSupportFragmentManager().findFragmentById(R.id.item_fragment);
-
-    if (itemFrag != null) {
-        // If item frag is available, we're in two-pane layout...
-
-        // Call a method in the ItemFragment to update its content
-        itemFrag.updateItemView(position);
-
-    } else {
-        // If the frag is not available, we're in the one-pane layout and must swap frags...
-
-        // Create fragment and give it an argument for the selected article
-        ItemFragment newFragment = new ItemFragment();
-        Bundle args = new Bundle();
-        args.putInt(ItemFragment.ARG_POSITION, position);
-        newFragment.setArguments(args);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        // Replace whatever is in the fragment_container view with this fragment,
-        // and add the transaction to the back stack so the user can navigate back
-        transaction.replace(R.id.fragment_container, newFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
-        transaction.commit();
-    }
-}
-*/
 
 }

@@ -41,7 +41,14 @@ public class Titles {
     	"Status of Financial Aid",
     	"View Eligibility",
     	"Award Information",
-    	"Laptop Status"}
+    	"Laptop Status"},
+    	
+    //Personal Information
+    	{"Update RPI Alert number",
+    	"Change My PIN",
+    	"Update My Address",
+    	"Update My Emergency Contacts"
+    	}
     };
     
     
